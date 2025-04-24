@@ -1,21 +1,20 @@
 package pe.edu.upc.domesticgo.dtos;
 
-import jakarta.persistence.Column;
-
 import java.time.LocalDate;
 
-public class ReseniaDtos {
-    private int  idResenias;
+public class ObservacionDtos {
+    private int  idObservacion;
     private LocalDate fechaRegistros;
     private String detalles;
     private Usuario usuario;
     private Servicio servicio;
-    public int getIdResenias() {
-        return idResenias;
+
+    public int getIdObservacion() {
+        return idObservacion;
     }
 
-    public void setIdResenias(int idResenias) {
-        this.idResenias = idResenias;
+    public void setIdObservacion(int idObservacion) {
+        this.idObservacion = idObservacion;
     }
 
     public LocalDate getFechaRegistros() {
@@ -32,5 +31,21 @@ public class ReseniaDtos {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 }
