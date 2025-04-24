@@ -14,23 +14,15 @@ public class Observacion {
     private LocalDate fechaObservacion;
     @Column(name ="DetallesObservacion",nullable = false,length = 1000)
     private String DetallesObservacion;
-    @ManyToOne
-    @JoinColumn(name =idUsuario)
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name =idServicio)
-    private Servicio servicio;
 
     public Observacion() {
     }
 
-    public Observacion(int idobservacion, LocalDate fechaObservacion, String detallesObservacion, Usuario usuario, Servicio servicio) {
+    public Observacion(int idobservacion, LocalDate fechaObservacion, String detallesObservacion) {
         this.idobservacion = idobservacion;
         this.fechaObservacion = fechaObservacion;
         DetallesObservacion = detallesObservacion;
-        this.usuario = usuario;
-        this.servicio = servicio;
+
     }
 
     public int getIdobservacion() {
@@ -55,21 +47,5 @@ public class Observacion {
 
     public void setDetallesObservacion(String detallesObservacion) {
         DetallesObservacion = detallesObservacion;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
     }
 }

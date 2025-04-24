@@ -6,8 +6,6 @@ public class ObservacionDtos {
     private int  idObservacion;
     private LocalDate fechaRegistros;
     private String detalles;
-    private Usuario usuario;
-    private Servicio servicio;
 
     public int getIdObservacion() {
         return idObservacion;
@@ -33,19 +31,4 @@ public class ObservacionDtos {
         this.detalles = detalles;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
 }

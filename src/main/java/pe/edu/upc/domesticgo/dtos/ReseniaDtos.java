@@ -8,8 +8,6 @@ public class ReseniaDtos {
     private int  idResenias;
     private LocalDate fechaRegistros;
     private String detalles;
-    private Usuario usuario;
-    private Servicio servicio;
     public int getIdResenias() {
         return idResenias;
     }
