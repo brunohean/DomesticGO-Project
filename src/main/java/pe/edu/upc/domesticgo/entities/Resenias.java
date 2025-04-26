@@ -5,49 +5,46 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table (name= "resenias")
+@Table(name="resenias")
 public class Resenias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int  idResenias;
-    @Column (name="fechaRegistros",nullable = false)
-    private LocalDate fechaRegistros;
-    @Column(name="detalles", nullable = false,length = 250)
-    private String detalles;
-
-
+    private  int idResenia;
+    @Column (name="fecharesenia",nullable=false)
+    private LocalDate fecharesenia;
+    @Column (name ="Detalles",nullable = false,length = 1000)
+    private String Detalles;
 
     public Resenias() {
     }
 
-    public Resenias(int idResenias, LocalDate fechaRegistros, String detalles) {
-        this.idResenias = idResenias;
-        this.fechaRegistros = fechaRegistros;
-        this.detalles = detalles;
+    public Resenias(int idResenia, LocalDate fecharesenia, String detalles) {
+        this.idResenia = idResenia;
+        this.fecharesenia = fecharesenia;
+        Detalles = detalles;
     }
 
-    public int getIdResenias() {
-        return idResenias;
+    public int getIdResenia() {
+        return idResenia;
     }
 
-    public void setIdResenias(int idResenias) {
-        this.idResenias = idResenias;
+    public void setIdResenia(int idResenia) {
+        this.idResenia = idResenia;
     }
 
-    public LocalDate getFechaRegistros() {
-        return fechaRegistros;
+    public LocalDate getFecharesenia() {
+        return fecharesenia;
     }
 
-    public void setFechaRegistros(LocalDate fechaRegistros) {
-        this.fechaRegistros = fechaRegistros;
+    public void setFecharesenia(LocalDate fecharesenia) {
+        this.fecharesenia = fecharesenia;
     }
 
     public String getDetalles() {
-        return detalles;
+        return Detalles;
     }
 
     public void setDetalles(String detalles) {
-        this.detalles = detalles;
+        Detalles = detalles;
     }
-
 }
