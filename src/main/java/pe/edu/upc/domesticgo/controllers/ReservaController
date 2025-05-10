@@ -1,0 +1,72 @@
+package pe.edu.upc.domesticgo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.domesticgo.entities.Reserva;
+import pe.edu.upc.domesticgo.servicesinterfaces.IReservaService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/reservas")
+public class ReservaController {
+
+    @Autowired
+    private IReservaService reservaService;
+
+    // Obtener todas las reservas (CLIENTE y OPERARIO pueden verlas)
+    @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'CLIENTE', 'OPERARIO')")
+    public ResponseEntity<List<Reserva>> getReservas() {
+        List<Reserva> reservas = reservaService.list();
+        return ResponseEntity.ok(reservas);
+    }
+
+    // Obtener una reserva por ID (CLIENTE y OPERARIO pueden verla, pero OPERARIO solo sus reservas)
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'CLIENTE', 'OPERARIO')")
+    public ResponseEntity<Reserva> getReserva(@PathVariable int id) {
+        Reserva reservaDTO = reservaService.searchId(id);
+        if (reservaDTO != null) {
+            return ResponseEntity.ok(reservaDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Insertar una nueva reserva (solo CLIENTE puede crearla)
+    @PostMapping
+    @PreAuthorize("hasRole('CLIENTE')")
+    public ResponseEntity<Void> insertReserva(@RequestBody Reserva reserva) {
+        reservaService.insert(reserva);
+        return ResponseEntity.status(201).build();
+    }
+
+    // Actualizar una reserva (solo ADMIN puede actualizarla)
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> updateReserva(@PathVariable int id, @RequestBody Reserva reserva) {
+        reserva.setIdReserva(id);
+        reservaService.update(reserva);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Eliminar una reserva (solo ADMIN puede eliminarla)
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteReserva(@PathVariable int id) {
+        reservaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
+    @GetMapping("/count-reservations")
+    public ResponseEntity<Long> countReservationsByUserAndMonth(
+            @RequestParam int userId, @RequestParam int month, @RequestParam int year) {
+        Long reservationCount = reservaService.countReservationsByUserAndMonth(userId, month, year);
+        return ResponseEntity.ok(reservationCount);
+    }
+
+}
