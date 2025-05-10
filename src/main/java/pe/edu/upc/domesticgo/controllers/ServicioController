@@ -1,0 +1,72 @@
+package pe.edu.upc.domesticgo.controllers;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.domesticgo.entities.Servicio;
+import pe.edu.upc.domesticgo.servicesinterfaces.IServicioService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/servicios")
+public class ServicioController {
+
+    @Autowired
+    private IServicioService servicioService;
+
+    // Obtener todos los servicios (todos los usuarios pueden verlos)
+    @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'CLIENTE', 'TRABAJADOR')")
+    public ResponseEntity<List<Servicio>> getServicios() {
+        List<Servicio> servicios = servicioService.list();
+        return ResponseEntity.ok(servicios);
+    }
+
+    // Obtener un servicio por ID (todos los usuarios pueden verlos)
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'CLIENTE', 'TRABAJADOR')")
+    public ResponseEntity<Servicio> getServicio(@PathVariable int id) {
+        Servicio servicio = servicioService.searchId(id);
+        if (servicio != null) {
+            return ResponseEntity.ok(servicio);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Insertar un nuevo servicio (solo ADMIN)
+    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> insertServicio(@RequestBody Servicio servicio) {
+        servicioService.insert(servicio);
+        return ResponseEntity.status(201).build();
+    }
+
+    // Actualizar un servicio (solo ADMIN)
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> updateServicio(@PathVariable int id, @RequestBody Servicio servicio) {
+        servicio.setIdServicio(id);
+        servicioService.update(servicio);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Eliminar un servicio (solo ADMIN)
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteServicio(@PathVariable int id) {
+        servicioService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/count-services")
+    public ResponseEntity<Long> countServicesByMonth(@RequestParam int month, @RequestParam int year) {
+        Long serviceCount = servicioService.countServicesByMonth(month, year);
+        return ResponseEntity.ok(serviceCount);
+    }
+
+}
