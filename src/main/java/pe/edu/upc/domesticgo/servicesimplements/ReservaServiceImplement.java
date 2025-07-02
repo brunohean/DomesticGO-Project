@@ -7,6 +7,7 @@ import pe.edu.upc.domesticgo.entities.Reserva;
 import pe.edu.upc.domesticgo.repositories.IReservaRepository;
 import pe.edu.upc.domesticgo.servicesinterfaces.IReservaService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,5 +40,10 @@ public class ReservaServiceImplement implements IReservaService {
     @Override
     public Reserva searchId(int id) {
         return resRepository.findById(id).orElse(new Reserva());
+    }
+
+    @Override
+    public List<Reserva> searchDate(LocalDate n) {
+        return resRepository.buscarFecha(n);
     }
 }

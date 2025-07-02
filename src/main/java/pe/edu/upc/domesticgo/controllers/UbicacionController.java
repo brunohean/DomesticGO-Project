@@ -3,6 +3,7 @@ package pe.edu.upc.domesticgo.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.domesticgo.dtos.EmpleoDTO;
 import pe.edu.upc.domesticgo.dtos.UbicacionDTO;
 import pe.edu.upc.domesticgo.entities.Ubicacion;
 import pe.edu.upc.domesticgo.servicesinterfaces.IUbicacionService;
@@ -54,4 +55,14 @@ public class UbicacionController {
     }
 
     // Queries
+
+    // Busqueda por nombre de Ubicacion
+    @GetMapping("/buscar-direccion")
+    public List<UbicacionDTO> buscar(@RequestParam String n){
+        return ubicService.searchName(n).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, UbicacionDTO.class);
+        }).collect(Collectors.toList());
+    }
+
 }

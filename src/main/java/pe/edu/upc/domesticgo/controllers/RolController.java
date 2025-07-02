@@ -54,4 +54,14 @@ public class RolController {
     }
 
     // Queries
+
+    // Busqueda por nombre de Empleo
+    @GetMapping("/buscar-rol")
+    public List<RolDTO> buscar(@RequestParam String n){
+        return rolService.searchName(n).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, RolDTO.class);
+        }).collect(Collectors.toList());
+    }
+
 }

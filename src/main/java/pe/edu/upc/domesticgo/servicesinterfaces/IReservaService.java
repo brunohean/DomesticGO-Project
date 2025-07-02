@@ -2,6 +2,8 @@ package pe.edu.upc.domesticgo.servicesinterfaces;
 
 import pe.edu.upc.domesticgo.entities.Reserva;
 
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 public interface IReservaService {
@@ -11,4 +13,6 @@ public interface IReservaService {
     public void update(Reserva user);
     public void delete(int id);
     public Reserva searchId(int id);
+    // Metodos de Personalizados
+    public List<Reserva> searchDate(LocalDate n);
 }

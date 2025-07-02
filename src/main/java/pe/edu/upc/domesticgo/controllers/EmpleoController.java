@@ -51,4 +51,14 @@ public class EmpleoController {
         EmpleoDTO dto=m.map(emplService.searchId(id), EmpleoDTO.class);
         return dto;
     }
+
+    // Busqueda por nombre de Empleo
+    @GetMapping("/buscar-empleo")
+    public List<EmpleoDTO> buscar(@RequestParam String n){
+        return emplService.searchName(n).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, EmpleoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
 }

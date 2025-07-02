@@ -39,4 +39,11 @@ public class RolServiceImplement implements IRolService {
     public Rol searchId(int id) {
         return rolRepository.findById(id).orElse(new Rol());
     }
+
+    // Metodos personalizados
+
+    @Override
+    public List<Rol> searchName(String na) {
+        return rolRepository.buscarNombre(na);
+    }
 }

@@ -11,4 +11,6 @@ public interface IRolService {
     public void update(Rol user);
     public void delete(int id);
     public Rol searchId(int id);
+    // Metodos personalizados
+    public List<Rol> searchName(String tipo);
 }

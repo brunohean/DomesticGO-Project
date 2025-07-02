@@ -40,4 +40,10 @@ public class UbicacionServiceImplement implements IUbicacionService {
     public Ubicacion searchId(int id) {
         return ubiRepository.findById(id).orElse(new Ubicacion());
     }
+
+
+    @Override
+    public List<Ubicacion> searchName(String n) {
+        return ubiRepository.buscarDireccion((n));
+    }
 }

@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.domesticgo.dtos.ReservaDTO;
+import pe.edu.upc.domesticgo.dtos.UbicacionDTO;
 import pe.edu.upc.domesticgo.entities.Reserva;
 import pe.edu.upc.domesticgo.servicesinterfaces.IReservaService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,4 +56,13 @@ public class ReservaController {
     }
 
     // Queries
+
+    // Busqueda por fecha de Reserva
+    @GetMapping("/buscar-fecha-reserva")
+    public List<ReservaDTO> buscar(@RequestParam LocalDate n){
+        return reseService.searchDate(n).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, ReservaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
