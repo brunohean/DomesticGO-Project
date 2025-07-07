@@ -3,6 +3,7 @@ package pe.edu.upc.domesticgo.dtos;
 public class RolDTO {
     private int idRol;
     private String nombreRol;
+    private Long userId;
 
     // Getters and Setters
     public int getIdRol() {
@@ -19,5 +20,13 @@ public class RolDTO {
 
     public void setNombreRol(String nombreRol) {
         this.nombreRol = nombreRol;
+    }
+
+    public Long getUser() {
+        return userId;
+    }
+
+    public void setUser(Long userId) {
+        this.userId = userId;
     }
 }

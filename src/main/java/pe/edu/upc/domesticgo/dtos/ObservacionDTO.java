@@ -1,7 +1,7 @@
 package pe.edu.upc.domesticgo.dtos;
 
 import pe.edu.upc.domesticgo.entities.Servicio;
-import pe.edu.upc.domesticgo.entities.Usuario;
+import pe.edu.upc.domesticgo.entities.DetalleUsuario;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public class ObservacionDTO {
     private int idObservacion;
     private LocalDate fechaObservacion;
     private String detalleObservacion;
-    private Usuario usuario;
+    private DetalleUsuario detalleUsuario;
     private Servicio servicio;
 
     // Getters and Setters
@@ -37,12 +37,12 @@ public class ObservacionDTO {
         this.detalleObservacion = detalleObservacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public DetalleUsuario getUsuario() {
+        return detalleUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(DetalleUsuario detalleUsuario) {
+        this.detalleUsuario = detalleUsuario;
     }
 
     public Servicio getServicio() {

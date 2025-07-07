@@ -21,7 +21,7 @@ public class Notificacion {
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
-    private Usuario usuario;
+    private DetalleUsuario detalleUsuario;
 
 
     // Constructores, Getters and Setters (falta constructores completo y llave foranea)
@@ -29,11 +29,11 @@ public class Notificacion {
     public Notificacion() {
     }
 
-    public Notificacion(int idNotificacion, LocalDate fechaNotificacion, String detalleNotificacion, Usuario usuario) {
+    public Notificacion(int idNotificacion, LocalDate fechaNotificacion, String detalleNotificacion, DetalleUsuario detalleUsuario) {
         this.idNotificacion = idNotificacion;
         this.fechaNotificacion = fechaNotificacion;
         this.detalleNotificacion = detalleNotificacion;
-        this.usuario = usuario;
+        this.detalleUsuario = detalleUsuario;
     }
 
     public int getIdNotificacion() {
@@ -60,11 +60,11 @@ public class Notificacion {
         this.detalleNotificacion = detalleNotificacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public DetalleUsuario getUsuario() {
+        return detalleUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(DetalleUsuario detalleUsuario) {
+        this.detalleUsuario = detalleUsuario;
     }
 }

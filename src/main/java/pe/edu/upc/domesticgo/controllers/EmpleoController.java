@@ -2,6 +2,7 @@ package pe.edu.upc.domesticgo.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.domesticgo.dtos.EmpleoDTO;
 import pe.edu.upc.domesticgo.entities.Empleo;
@@ -10,6 +11,7 @@ import pe.edu.upc.domesticgo.servicesinterfaces.IEmpleoService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 @RestController
 @RequestMapping("/empleos")
 public class EmpleoController {

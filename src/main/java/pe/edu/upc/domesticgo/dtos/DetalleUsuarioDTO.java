@@ -3,7 +3,7 @@ package pe.edu.upc.domesticgo.dtos;
 import pe.edu.upc.domesticgo.entities.Empleo;
 import pe.edu.upc.domesticgo.entities.Rol;
 
-public class UsuarioDTO {
+public class DetalleUsuarioDTO {
     private int idUsuario;
     private String nombres;
     private String apellidoPaterno;

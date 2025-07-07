@@ -21,7 +21,7 @@ public class Observacion {
 
     @ManyToOne
     @JoinColumn(name = "idUsuario",nullable = false)
-    private Usuario usuario;
+    private DetalleUsuario detalleUsuario;
 
     @ManyToOne
     @JoinColumn(name = "idServicio",nullable = false)
@@ -32,11 +32,11 @@ public class Observacion {
     public Observacion() {
     }
 
-    public Observacion(int idObservacion, LocalDate fechaObservacion, String detalleObservacion, Usuario usuario, Servicio servicio) {
+    public Observacion(int idObservacion, LocalDate fechaObservacion, String detalleObservacion, DetalleUsuario detalleUsuario, Servicio servicio) {
         this.idObservacion = idObservacion;
         this.fechaObservacion = fechaObservacion;
         this.detalleObservacion = detalleObservacion;
-        this.usuario = usuario;
+        this.detalleUsuario = detalleUsuario;
         this.servicio = servicio;
     }
 
@@ -64,12 +64,12 @@ public class Observacion {
         this.detalleObservacion = detalleObservacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public DetalleUsuario getUsuario() {
+        return detalleUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(DetalleUsuario detalleUsuario) {
+        this.detalleUsuario = detalleUsuario;
     }
 
     public Servicio getServicio() {

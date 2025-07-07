@@ -27,11 +27,11 @@ public class Contrato {
 
     @ManyToOne
     @JoinColumn(name = "idContratante", nullable = false)
-    private Usuario contratante;
+    private DetalleUsuario contratante;
 
     @ManyToOne
     @JoinColumn(name = "idContratado", nullable = false)
-    private Usuario contratado;
+    private DetalleUsuario contratado;
 
     // Verificar si funciona el @OnetoOne sino utiliza @OnetoMany
     @OneToOne
@@ -44,7 +44,7 @@ public class Contrato {
     public Contrato() {
     }
 
-    public Contrato(int idContrato, LocalDate fechaInicio, LocalDate fechaFinal, String archivo, String descripcionContrato, Usuario contratante, Usuario contratado, Ubicacion ubicacion) {
+    public Contrato(int idContrato, LocalDate fechaInicio, LocalDate fechaFinal, String archivo, String descripcionContrato, DetalleUsuario contratante, DetalleUsuario contratado, Ubicacion ubicacion) {
         this.idContrato = idContrato;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
@@ -95,19 +95,19 @@ public class Contrato {
         this.descripcionContrato = descripcionContrato;
     }
 
-    public Usuario getContratante() {
+    public DetalleUsuario getContratante() {
         return contratante;
     }
 
-    public void setContratante(Usuario contratante) {
+    public void setContratante(DetalleUsuario contratante) {
         this.contratante = contratante;
     }
 
-    public Usuario getContratado() {
+    public DetalleUsuario getContratado() {
         return contratado;
     }
 
-    public void setContratado(Usuario contratado) {
+    public void setContratado(DetalleUsuario contratado) {
         this.contratado = contratado;
     }
 

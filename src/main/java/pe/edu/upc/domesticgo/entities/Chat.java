@@ -21,18 +21,18 @@ public class Chat {
 
     @ManyToOne
     @JoinColumn(name = "idContratante", nullable = false)
-    private Usuario contratante;
+    private DetalleUsuario contratante;
 
     @ManyToOne
     @JoinColumn(name = "idContratado", nullable = false)
-    private Usuario contratado;
+    private DetalleUsuario contratado;
 
     // Getters and Setters and Constructors (falta constructores completo y llave foranea)
 
     public Chat() {
     }
 
-    public Chat(int idChat, LocalDate fechaMensaje, String detalleMensaje, Usuario contratante, Usuario contratado) {
+    public Chat(int idChat, LocalDate fechaMensaje, String detalleMensaje, DetalleUsuario contratante, DetalleUsuario contratado) {
         this.idChat = idChat;
         this.fechaMensaje = fechaMensaje;
         this.detalleMensaje = detalleMensaje;
@@ -64,19 +64,19 @@ public class Chat {
         this.detalleMensaje = detalleMensaje;
     }
 
-    public Usuario getContratante() {
+    public DetalleUsuario getContratante() {
         return contratante;
     }
 
-    public void setContratante(Usuario contratante) {
+    public void setContratante(DetalleUsuario contratante) {
         this.contratante = contratante;
     }
 
-    public Usuario getContratado() {
+    public DetalleUsuario getContratado() {
         return contratado;
     }
 
-    public void setContratado(Usuario contratado) {
+    public void setContratado(DetalleUsuario contratado) {
         this.contratado = contratado;
     }
 }

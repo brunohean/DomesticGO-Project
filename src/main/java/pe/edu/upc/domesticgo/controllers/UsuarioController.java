@@ -4,16 +4,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import pe.edu.upc.domesticgo.dtos.UsuarioDTO;
+import pe.edu.upc.domesticgo.dtos.DetalleUsuarioDTO;
 
-import pe.edu.upc.domesticgo.entities.Usuario;
+import pe.edu.upc.domesticgo.entities.DetalleUsuario;
 import pe.edu.upc.domesticgo.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/detalle-usuarios")
 public class UsuarioController {
     @Autowired
     private IUsuarioService usuaService;
@@ -21,24 +21,24 @@ public class UsuarioController {
     // Metodos CRUD (listar, insertar, modificar, eliminar, buscarId)
 
     @GetMapping("/listado")
-    public List<UsuarioDTO> listar() {
+    public List<DetalleUsuarioDTO> listar() {
         return usuaService.list().stream().map(n ->{
             ModelMapper m=new ModelMapper();
-            return m.map(n, UsuarioDTO.class);
+            return m.map(n, DetalleUsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 
     @PostMapping("/registrar")
-    public void insertar(@RequestBody UsuarioDTO usuaDto){
+    public void insertar(@RequestBody DetalleUsuarioDTO usuaDto){
         ModelMapper m=new ModelMapper();
-        Usuario usua=m.map(usuaDto, Usuario.class);
+        DetalleUsuario usua=m.map(usuaDto, DetalleUsuario.class);
         usuaService.insert(usua);
     }
 
     @PutMapping("/modificar")
-    public void modificar(@RequestBody UsuarioDTO usuaDto){
+    public void modificar(@RequestBody DetalleUsuarioDTO usuaDto){
         ModelMapper m=new ModelMapper();
-        Usuario usua=m.map(usuaDto, Usuario.class);
+        DetalleUsuario usua=m.map(usuaDto, DetalleUsuario.class);
         usuaService.update(usua);
     }
 
@@ -48,9 +48,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO buscarId(@PathVariable("id") int id){
+    public DetalleUsuarioDTO buscarId(@PathVariable("id") int id){
         ModelMapper m=new ModelMapper();
-        UsuarioDTO dto=m.map(usuaService.searchId(id), UsuarioDTO.class);
+        DetalleUsuarioDTO dto=m.map(usuaService.searchId(id), DetalleUsuarioDTO.class);
         return dto;
     }
 }
